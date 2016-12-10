@@ -1,3 +1,37 @@
+
+How to generate AWR report:
+@$ORACLE_HOME/rdbms/admin/awrrpt.sql
+
+
+https://blogs.oracle.com/optimizer/entry/gathering_optimizer_statistics_is_one
+
+
+exec dbms_stats.gather_schema_stats(ownname => User, method_opt => 'FOR ALL COLUMNS SIZE 1', cascade => TRUE, degree => 40);
+
+ALTER SYSTEM SET RESOURCE_MANAGER_PLAN = default_plan;
+exec dbms_stats.set_global_prefs('CONCURRENT','TRUE');
+exec dbms_stats.gather_schema_stats(ownname => 'WFN6SCH006333', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+exec dbms_stats.gather_schema_stats(ownname => 'WFN6SCH006415', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+exec dbms_stats.gather_schema_stats(ownname => 'WFN6SCH006941', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+exec dbms_stats.gather_schema_stats(ownname => 'WFN6SCH007028', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+exec dbms_stats.gather_schema_stats(ownname => 'WFN6SCH008030', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+exec dbms_stats.gather_schema_stats(ownname => 'WFN6SCH008058', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+exec dbms_stats.gather_schema_stats(ownname => 'WFN8SCH014541', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+exec dbms_stats.gather_schema_stats(ownname => 'WFN8SCH014601', estimate_percent => dbms_stats.auto_sample_size, method_opt => 'for all columns size auto', cascade => TRUE, degree => 40);
+
+
+--find out the time of the day with highest load:
+
+select extract(hour from req_timestamp), bi.inst_sid, count(1)
+from batreq br join batinstance bi on (br.inst_key = bi.inst_key)
+where req_timestamp > trunc(sysdate)
+and upper(bi.inst_sid) like 'WFC%'
+group by extract(hour from req_timestamp), bi.inst_sid
+order by 3,2,1;
+
+
+
+
 select sid from v$mystat where rownum = 1;
 select rawtohex(dbms_crypto.hash(dbms_metadata.get_ddl('PACKAGE', 'MY_PKG', 'MY_USER'), 2)) hashval from dual;
 select sys_context('USERENV', 'CURRENT_SCHEMA') from dual;
