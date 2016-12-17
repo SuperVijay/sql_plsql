@@ -36,7 +36,7 @@ wfn app server: 11.3.164.186
 Ent App server: 11.3.254.77
 Vantage app server: 10.136.8.185   10.136.8.188
 
-   fwdq8UC8  wczr70ZY  n5VtX084    fyT8BdcJ
+   fwdq8UC8  wczr70ZY  n5VtX084   rZXvL82v   -- fyT8BdcJ
 mbugateway.esi.adp.com  11.129.59.39   vcanaka	11.129.34.168, 169
 ssh vcanaka@11.129.34.168
 11.3.35.85
@@ -312,6 +312,11 @@ QRY_INTERNAL_HINT             : /*+ LEADING(TABLE1) NO_MERGE(TABLE1) NO_MERGE(TA
 /*+ NO_MERGE LEADING(IT_TABLE2) */
 
 MV backup pointing to what?
+
+
+COS User:
+This is a COS user so we can’t do a webservice call as it will always show the Client Org ID as FFFFFFFFFFFFFFFFFs.
+CADAIR@ADP@CATALENTQ
 
 
 
@@ -687,6 +692,8 @@ C:\Users\canakalv\Desktop\WORK\securitypkg.sql
 ( CAST( x AS DATE ) - CAST( y AS DATE ) ) * 86400
 
 Pay Group & File Number:	RKH - 205105
+
+SD TICKET:
 db hosting
 Hosting.DB.OracleADPR        DB Prod Incidents Shared Apps
 Hosting.DB.Middleware.GenRequest   Middleware Eng DBA Ops
@@ -10760,6 +10767,7 @@ set arraysize 1000
 exec dbms_Session.set_identifier('VIJAY_TEST');
 select sys_context('userenv', 'instance') from dual;
 
+alter system set "_sqlmon_max_planlines"=800 scope=both;
 
 /*+ LEADING(TABLE1) NO_MERGE(TABLE4) gather_plan_statistics */ /* fabiobressler hard parse #1 */ 
 /*+ gather_plan_statistics */ 

@@ -2,6 +2,82 @@
 How to generate AWR report:
 @$ORACLE_HOME/rdbms/admin/awrrpt.sql
 
+sql monitor report:
+https://oracle-base.com/articles/11g/real-time-sql-monitoring-11gr1
+http://structureddata.org/2008/01/06/oracle-11g-real-time-sql-monitoring-using-dbms_sqltunereport_sql_monitor/
+http://kerryosborne.oracle-guy.com/2008/10/oracle-11g-real-time-sql-monitoring/
+alter system set "_sqlmon_max_planlines"=800 scope=both;
+
+
+alter session set timed_statistics=true;
+alter session set statistics_level=all;
+set time on timing on linesize 300 pagesize 10000
+set arraysize 1000
+exec dbms_Session.set_identifier('VIJAY_TEST');
+select sys_context('userenv', 'instance') from dual;
+
+
+/*+ LEADING(TABLE1) NO_MERGE(TABLE4) gather_plan_statistics */ /* fabiobressler hard parse #1 */ 
+/*+ gather_plan_statistics */ 
+
+select inst_id, sid, serial#,  sql_child_number, sql_id, prev_sql_id from gv$session
+where client_identifier='VIJAY_TEST' and status='ACTIVE';
+
+select s.sql_id, s.sql_child_number
+from gv$session s, gv$sql l
+where s.inst_id = l.inst_id and s.sql_id = l.sql_id and s.sql_child_number=l.child_number
+and UPPER(l.sql_Text) like '%VIJAY_EVENT_ELIGBLTY_VW%';
+
+set lines 300 pagesize 0
+select * from table(dbms_xplan.display_cursor('00wjjts22ggw4',0,'ALLSTATS LAST'));
+set serveroutput off
+select * from table(dbms_xplan.display_cursor(null,null,'ALLSTATS'));
+
+
+
+select * from table(dbms_xplan.display_cursor('fhzq79k9pyhq5',0,'ALL'));
+
+select * from table(dbms_xplan.display_cursor('fhzq79k9pyhq5',0,'ALLSTATS LAST'));
+
+SELECT  * FROM
+  TABLE(DBMS_XPLAN.DISPLAY_CURSOR('75chksrfa5fbt',0,'ALLSTATS LAST +PEEKED_BINDS +PROJECTION +ALIAS +PREDICATE +COST +BYTES'));
+
+
+-- To get sql_id from running session:
+select sid, serial#, sql_id from v$session where client_identifier='FAB' and status='ACTIVE';
+fg8mqhd29z4q6
+
+-- Get plan for a sql_id:
+select * from table(dbms_xplan.display_cursor('fg8mqhd29z4q6',0,'ALLSTATS LAST')); --> fg8mqhd29z4q6_plan.txt / fg8mqhd29z4q6_plan_stats.txt
+
+-- Get active workareas: 
+col OPERATION_TYPE for a25
+select operation_id, operation_type, expected_size, work_area_size, number_passes, round(tempseg_size/1024/1024/1024,2) temp_size_gb from v$sql_workarea_active where sql_id='fg8mqhd29z4q6' order by 1;
+
+-- Check the final number_passes + temp consumed by each step
+col OPERATION_TYPE for a25
+col MAX_PASSES for a15
+select operation_id, operation_type, last_execution as max_passes, round(max_tempseg_size/1024/1024/1024,2) max_temp_size_gb from v$sql_workarea where sql_id='fg8mqhd29z4q6';
+
+-- Get bind variables
+col NAME for a20
+col DATATYPE_STRING for a20
+col VALUE_STRING for a50
+select name, position, datatype_string, value_string from v$sql_bind_capture where sql_id='fg8mqhd29z4q6';
+
+
+
+
+
+select operation, target, trunc(end_time, 'MI')
+from
+      DBA_OPTSTAT_OPERATIONS
+where target='WFN8SCH014541'
+ 
+OPERATION                    TARGET            TRUNC(END_TIME,'MI')
+---------------------------- ----------------- --------------------
+gather_schema_stats          WFN8SCH014541     2016-12-10 11:38:00
+
 
 https://blogs.oracle.com/optimizer/entry/gathering_optimizer_statistics_is_one
 
