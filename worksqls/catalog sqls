@@ -1,0 +1,32 @@
+IHCM std reports:
+select count(1) as rptcnt from qryquery q where q.client_code = 'ADPADMIN'
+and q.qry_mode IN ('SMP','STD') and q.user_key in (select user_key from secuser where user_login = 'FBRESSLER@ADP')
+and q.qry_status = 90 and q.qry_active = 't' and q.qry_ext_templateid like 'IHCM16%';
+
+
+
+
+variable v number;
+
+exec :v :=
+
+exec dbms_stats.CONVERT_RAW_VALUE('786D0916091C14', :v);
+select to_date(:v, 'MM/DD/YYYY HH24:MI:SS') from dual;
+
+print to_date(:v, 'MM/DD/YYYY HH24:MI:SS')
+
+select low_value,high_value, to_char(last_analyzed,'dd-mon-yyyy hh24:mi:ss')
+from user_tab_cols where TABLE_NAME = 'BATREQ'
+and COLUMN_NAME='REQ_TIMESTAMP';
+
+declare
+  vd date;
+begin
+  dbms_stats.CONVERT_RAW_VALUE('7875010A172E37379E20F0', vd);
+  dbms_output.put_line(to_char(vd, 'MM/DD/YYYY HH24:MI:SS'));
+end;
+/
+
+select low_value,high_value, to_char(last_analyzed,'dd-mon-yyyy hh24:mi:ss')
+from user_tab_cols where TABLE_NAME = 'BATREQ'
+and COLUMN_NAME='REQ_TIMESTAMP';

@@ -1,4 +1,5 @@
 smb://169.254.103.60/c$
+is client still with ADP?  http://cwpaasvip.paas.whc.dc01.us.adp:8080/ccwws/SetISIResourceGroup
 
 dc2prwfn4arwb11/ 11.3.164.186:/adpr/listener_wfn4/xml/vijay # vi runsql.sql
 wifi: 98007742
@@ -36,11 +37,13 @@ wfn app server: 11.3.164.186
 Ent App server: 11.3.254.77
 Vantage app server: 10.136.8.185   10.136.8.188
 
-   fwdq8UC8  wczr70ZY  n5VtX084   rZXvL82v   -- fyT8BdcJ
-mbugateway.esi.adp.com  11.129.59.39   vcanaka	11.129.34.168, 169
+   fwdq8UC8  wczr70ZY/rJemmz69  n5VtX084   rZXvL82v   -- fyT8BdcJ
+mbugateway.esi.adp.com  11.129.59.39   vcanaka	11.129.34.168, 169  wczr70ZY
 ssh vcanaka@11.129.34.168
 11.3.35.85
 11.3.35.86
+use: 10.136.8.188 to connect to Vantage APP server listerer XML files.
+
 
 catalog generator server on crw11d: 51.16.98.116
 
@@ -63,7 +66,7 @@ sqlplus ADPIDMCORE01/adpidmcore01_y@cri11y
    FXkOuOh8  z1jza9hz
    0Jq6e8Jm
 ls -lrt *INX.sql | sort -k 5 -n
-dc: 4rO7HbUp / gz6Tt8Es :  rJemmz69
+dc: 4rO7HbUp / gz6Tt8Es :  rJemmz69   
 DC: T1EDwjWb    rJemmz69
 l3v42I6t / 66R47WoX
 18J69G40 / 869amxR9  FXkOuOh8
@@ -454,6 +457,19 @@ request id from report id:
 select req_key, req_status, req_timestamp from batreq where qry_key IN 
 (select qry_key from qryquery where qry_key_versionof = '1602205675670') order by 3 desc;
 
+select regexp_substr(str, '[^,]+', 1, rownum) split from test
+connect by level < regexp_count(str, ',')+1;   -- 5
+  ^^ above fails for >1 record in the table
+
+select split from test,
+  lateral(select regexp_substr(str, '[^,]+', 1, rownum) split from dual
+          connect by level <= regexp_count(str, ',')+1);
+
+select term, regexp_replace(term, '[^[:digit:].]') num from payment_terms;
+
+
+
+
 SQL> select regexp_substr('SMITH,ALLEN,WARD,JONES','[^,]+', 1, level) from dual
   2  connect by regexp_substr('SMITH,ALLEN,WARD,JONES', '[^,]+', 1, level) is not null;
 
@@ -695,6 +711,7 @@ Pay Group & File Number:	RKH - 205105
 
 SD TICKET:
 db hosting
+ADPR.ADPI.support           ADPR_ADPi Team
 Hosting.DB.OracleADPR        DB Prod Incidents Shared Apps
 Hosting.DB.Middleware.GenRequest   Middleware Eng DBA Ops
 ES.ADPR.DevNASEnvironment    ADPR Dev NAS Environment
@@ -2472,6 +2489,57 @@ begin
 end;
 /
 commit;
+
+
+drop type t_ty_wfn_adpr_map;
+drop type ty_wfn_adpr_map;
+
+create type ty_wfn_adpr_map is object (
+  wfn_db            varchar2(20),
+  wfn_schema_name   varchar2(50),
+  adpr_region_name  varchar2(30),
+  version           varchar2(10)
+);
+/
+
+create type t_ty_wfn_adpr_map is table of ty_wfn_adpr_map;
+/
+
+
+
+create or replace function get_wfn_adpr_mappings(dbname varchar2) return t_ty_wfn_adpr_map --pipelined
+as
+   rc sys_refcursor;
+
+   l_rec ty_wfn_adpr_map;
+   l_tabrec t_ty_wfn_adpr_map := t_ty_wfn_adpr_map();
+
+   type t_wfn_schema_name is table of varchar2(50);
+   type t_adpr_region_name is table of varchar2(50);
+   type t_version is table of varchar2(50);
+   l_wfn_schema_name t_wfn_schema_name;
+   l_adpr_region_name t_adpr_region_name;
+   l_version t_version;
+
+   dblink varchar2(30) := 'dblinkcrw11qto' || dbname;
+begin
+   open rc for 'select wfn_schema_name, adpr_region_name, version from ggate.wfn_adpr_mapping@' || dblink;
+   fetch rc bulk collect into l_wfn_schema_name, l_adpr_region_name, l_version;
+   close rc;
+
+   for i in l_wfn_schema_name.first .. l_wfn_schema_name.last
+   loop
+      l_tabrec.extend();
+      l_tabrec(l_tabrec.last) := ty_wfn_adpr_map(dbname, l_wfn_schema_name(i), l_adpr_region_name(i), l_version(i));
+      --pipe row(l_tabrec(l_tabrec.last));
+   end loop;
+
+   return l_tabrec;
+end;
+/
+
+show errors
+
 
 
 ---- execute immediate bulk collect with recordType

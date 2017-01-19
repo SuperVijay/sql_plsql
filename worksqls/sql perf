@@ -1,0 +1,28 @@
+select distinct s.sql_text from gv$session l join gv$sql s
+on (l.sql_id = s.sql_id and l.inst_id = s.inst_id and l.sql_child_number = s.child_number)
+where l.osuser = 'canakalv' and l.machine='dc2prjasvap1021';
+
+
+CREATE OR REPLACE FUNCTION get_stat (p_stat IN VARCHAR2) RETURN NUMBER AS
+  l_return  NUMBER;
+BEGIN
+  SELECT ms.value
+  INTO   l_return
+  FROM   v$mystat ms,
+         v$statname sn
+  WHERE  ms.statistic# = sn.statistic#
+  AND    sn.name = p_stat;
+  RETURN l_return;
+END get_stat;
+/
+
+
+get_stat('session pga memory');
+
+x/24 --> to look back x hours
+x/(24*60)  --> to look back x minutes
+x/(24*60*60) --> to look back x seconds
+
+
+alter session set plsql_warnings='enable:all';
+show param plsql_warnings

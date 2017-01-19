@@ -6,8 +6,12 @@ sql monitor report:
 https://oracle-base.com/articles/11g/real-time-sql-monitoring-11gr1
 http://structureddata.org/2008/01/06/oracle-11g-real-time-sql-monitoring-using-dbms_sqltunereport_sql_monitor/
 http://kerryosborne.oracle-guy.com/2008/10/oracle-11g-real-time-sql-monitoring/
+
 alter system set "_sqlmon_max_planlines"=800 scope=both;
 
+alter session set "_sqlmon_max_planlines"=20000; 
+alter system flush shared_pool;
+alter system flush buffer_cache;
 
 alter session set timed_statistics=true;
 alter session set statistics_level=all;
@@ -16,12 +20,46 @@ set arraysize 1000
 exec dbms_Session.set_identifier('VIJAY_TEST');
 select sys_context('userenv', 'instance') from dual;
 
+truncate table SECURITY_VW_TBL_TMP;
+
 
 /*+ LEADING(TABLE1) NO_MERGE(TABLE4) gather_plan_statistics */ /* fabiobressler hard parse #1 */ 
 /*+ gather_plan_statistics */ 
 
 select inst_id, sid, serial#,  sql_child_number, sql_id, prev_sql_id from gv$session
 where client_identifier='VIJAY_TEST' and status='ACTIVE';
+
+
+SET LONG 10000000
+SET LONGCHUNKSIZE 10000000
+set lines 20000
+SET PAGESIZE 0
+SET TRIM ON
+SET TRIMSPOOL ON
+SET ECHO OFF
+SET FEEDBACK OFF
+set serveroutput on size unlimited
+SPOOL 1610381310560_extndstatsNORMafterlocalidx.html
+SELECT DBMS_SQLTUNE.report_sql_monitor(
+  sql_id       => '2wkx9jwjv9udn',
+  type         => 'ACTIVE',
+  report_level => 'ALL') AS report
+FROM dual;
+SPOOL OFF
+
+
+
+
+
+select DBMS_SQLTUNE.REPORT_SQL_MONITOR(
+   session_id=>sys_context('userenv','sid'),
+   type         => 'ACTIVE',
+   report_level=>'ALL') as report
+from dual;
+
+select count(1) from v$sql_monitor where sql_id = '8ajwr24q083h3';
+
+
 
 select s.sql_id, s.sql_child_number
 from gv$session s, gv$sql l
