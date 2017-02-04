@@ -30,3 +30,20 @@ end;
 select low_value,high_value, to_char(last_analyzed,'dd-mon-yyyy hh24:mi:ss')
 from user_tab_cols where TABLE_NAME = 'BATREQ'
 and COLUMN_NAME='REQ_TIMESTAMP';
+
+
+select bi.inst_sid, count(1)
+from batinstance bi join batclientenvironment be on (be.inst_key = bi.inst_key)
+join secsession s on (s.client_code = be.client_code)
+where be.prd_code = 'WFN'
+and s.session_timestamp > sysdate - 30
+group by bi.inst_sid order by 2;
+
+WFC01P_ADPR_SVC1	 7
+wfc36q_SVC1         17
+wfc33d_adpr_SVC1    31
+
+
+Setup refresh job for above schemas.
+UAT:
+wfc21u				       11

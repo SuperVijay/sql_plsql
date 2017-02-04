@@ -1,0 +1,47 @@
+
+Hi Amit,
+  Here is the work items we completed in January.
+
+1. 3 clients in total enabled for IHCM.
+   6 IHCM sample reports have been packaged and deployed
+   Several iHCM defects are fixed in the release.
+   Code enhancements to reduce the #of objects created.
+   Replication mismatches detection script is ready but couldnt rollout yet due to unavailabity of the admin tool.
+      we are working on porting it to run independent of the admin pages.
+
+2. Vantage 17.1 release has been delivered to IAT,
+    This includes below major changes:
+    a. Vantage field grabber changes for HR pages
+       Work in progress to include PAYROLL pages as well with weekly deployments to IAT.
+    b. Enhanced client derived fields support
+    c. Employee Pay Plan related changes
+    d. Additional information file has been added along with support for 60 CDF fields.
+    e. ADPR support for State id info pages originally added in Vantage 16.2)
+    f. Threshold hours for part-time employees on State W4 pages
+    g. Fix for ~15 Vantage global fields not showing their labels.
+    h. A new Vantage benefits file created & corresponding HWSE file.
+    i. Off cycle check reason codes file is now reportable for all clients
+    j. Time Info, Time Info Details file are made effective dated.
+     ****(US617262 get the report sqls and check performance)
+    k. obsolete fields removed from paygroup table to match Vantage
+      *****(US622079 could have perf impact.. check load test)
+
+
+3. EI9 development and security rules implementation has been complete.
+   Testing is in progress along with EI9 team.
+
+
+4. GHCM integration side row-level security implementation has been complete.
+   There have been several discussions on whitelist implementaiton and its been agreed that
+   SR will make a rest call to get the white list at the time of user login, instead of populating
+   it offline.
+   SSO has been implemented.
+
+5. Report Central changes
+   Catalog changes to provide additional infor for std reports
+   has been added.
+
+6. WFN NAPR work in progress
+   Performance fixes for ACA and Timecard files in progress.
+
+7. Enterprise GA rollout changes expected from POs.

@@ -16,7 +16,7 @@ http://dc1prgcapp03.whc:6777/dbtoolkit.html  demo ADPdemo!
 powercfg /hibernate off
 smb://169.254.103.60/c$
 
-WIRELESS CARD TICKET: 1922810  6/28 
+WIRELESS CARD TICKET: 1922810  6/28
 office phone billing number: 870297113
 
 https://confluence.es.ad.adp.com/display/AR/DataCloud+Coverage+Calendar
@@ -37,6 +37,13 @@ wfn app server: 11.3.164.186
 Ent App server: 11.3.254.77
 Vantage app server: 10.136.8.185   10.136.8.188
 
+DIT: 51.20.147.79
+IAT: 11.1.39.228
+
+PKG_UPDATE_MAS_CUSTOMS.update_fields('HRII','153');
+
+
+
    fwdq8UC8  wczr70ZY/rJemmz69  n5VtX084   rZXvL82v   -- fyT8BdcJ
 mbugateway.esi.adp.com  11.129.59.39   vcanaka	11.129.34.168, 169  wczr70ZY
 ssh vcanaka@11.129.34.168
@@ -46,6 +53,10 @@ use: 10.136.8.188 to connect to Vantage APP server listerer XML files.
 
 
 catalog generator server on crw11d: 51.16.98.116
+
+fieldgrabber:
+window.adprFieldGrabber.enableDevMode();
+window.adprFieldGrabber.show();
 
 
 Superdome server and database info:
@@ -61,12 +72,12 @@ sqlplus ADPIDMCORE01/adpidmcore01_y@cri11y
    I29IZ7JW (cdl)
    1vWNmsBw
    0Jq6e8Jm (I29IZ7JW)  L69p5NKC
-   FXkOuOh8  z1jza9hz 
+   FXkOuOh8  z1jza9hz
   
    FXkOuOh8  z1jza9hz
    0Jq6e8Jm
 ls -lrt *INX.sql | sort -k 5 -n
-dc: 4rO7HbUp / gz6Tt8Es :  rJemmz69   
+dc: 4rO7HbUp / gz6Tt8Es :  rJemmz69
 DC: T1EDwjWb    rJemmz69
 l3v42I6t / 66R47WoX
 18J69G40 / 869amxR9  FXkOuOh8
@@ -117,7 +128,7 @@ https://confluence.es.ad.adp.com/display/AA/Analytics+and+Lifion
 Prod equivalant Vantage clients in DIT and FIT:
   TMOBILE DIT2
   GCA  IN FIT1   560k ps_job
-GCA (FIT1 client is VANFITAC19)     
+GCA (FIT1 client is VANFITAC19)
 AllesPrac@VANFITAC19/adpadp11
 
 <properties.oracle URL="jdbc:-Oracle:thin:@cdlpftbf1-scan.es.ad.adp.com:1521/cri02y_svc1" password="adpiv2" user="ADPIDMCORE01_M"/>
@@ -130,7 +141,7 @@ united mileage plus number: EC984176
 
 
 
-IAT: 
+IAT:
 sqlplus ADPIDMCORE01/iatdwADP1@cri11s
 CRI11S=(DESCRIPTION =
     (ADDRESS_LIST = (LOAD_BALANCE = yes) (FAILOVER = ON)
@@ -138,7 +149,7 @@ CRI11S=(DESCRIPTION =
     (CONNECT_DATA = (service_name = cri11s_svc1)))
 
 	
-UAT: 
+UAT:
 sqlplus ADPIDMCORE01/DWs7emau@cri11u
 TNS ENTRY:
 cri11u =
@@ -153,7 +164,7 @@ cri11u =
     )
   )
 
-PROD:  UID/ PASS: 
+PROD:  UID/ PASS:
 sqlplus ADPIDMCORE01/ADPidw1pr0d@cri11p
 
 TNS ENTRY:
@@ -356,12 +367,12 @@ Data Source:
 
 select * from qryquery where qry_is_partner = 't' and qry_title like 'Invoice List Bill%' and qry_mode = 'SMP';
 
-select distinct qry_title || '  ' || qry_is_partner || '  ' || qry_mode || '  ' || qry_status || '  ' || qry_active 
+select distinct qry_title || '  ' || qry_is_partner || '  ' || qry_mode || '  ' || qry_status || '  ' || qry_active
 from qryquery q where qry_is_partner = 't'
 and q.client_code = 'ADPADMIN'
 --and qry_title like 'Invoice List Bill'
 and qry_mode = 'STD'
-and q.qry_status = 90  
+and q.qry_status = 90
 and q.qry_active = 't' order by 1;
 
 
@@ -432,7 +443,7 @@ Vantage SVN:
 https://nad2d01.es.ad.adp.com/svn/HRCore/trunk/HRII2.0/VANDB2.06
 
 TMS:
-https://vantage-fit.nj.adp.com/public/index.htm 
+https://vantage-fit.nj.adp.com/public/index.htm
 JQS01FIT1@QS01FIT1  adpadp18
 ADPR was developed in such a way that CRTClientRunReport users cannot access the wizard steps in order to build his own report.
 
@@ -454,7 +465,7 @@ Service etb63d_svc1 is running on instance(s) etb63d01,etb63d02
 
 
 request id from report id:
-select req_key, req_status, req_timestamp from batreq where qry_key IN 
+select req_key, req_status, req_timestamp from batreq where qry_key IN
 (select qry_key from qryquery where qry_key_versionof = '1602205675670') order by 3 desc;
 
 select regexp_substr(str, '[^,]+', 1, rownum) split from test
@@ -516,7 +527,7 @@ rally: is...
 http://hpsfs01.es.ad.adp.com/adpr/ADPReportingMASstats.pl
 https://commonag-isihelpdesk-fit.nj.adp.com/
 
-AdprPract@GDS2 
+AdprPract@GDS2
 adpadp46
 https://adpvantage-fit.nj.adp.com/public/index.htm
 
@@ -705,6 +716,7 @@ C:\Users\canakalv\Desktop\WORK\securitypkg.sql
 
 
 
+
 ( CAST( x AS DATE ) - CAST( y AS DATE ) ) * 86400
 
 Pay Group & File Number:	RKH - 205105
@@ -725,6 +737,8 @@ sqlplus dbadm/DBADM@T50400H
 sqlplus dbadm/Hri01dDB@VAN01D
 sqlplus dbadm/Hri01dDB@van03d
 sqlplus dbadm/Hri01dDB@VAN22D
+sqlplus dbadm/DBADM@VAN02D
+
 
 FIT:
 sqlplus dbadm/Hri01dDB@VAN01Q
@@ -883,8 +897,8 @@ Lanka123
 VijayaQA@adp
 Lanka123
 
-Portal URL:HYPERLINK "https://wfn-iat.adp.com/portal/admin.jsp"https://wfn-iat.adp.com  
-IAT UA User : 
+Portal URL:HYPERLINK "https://wfn-iat.adp.com/portal/admin.jsp"https://wfn-iat.adp.com
+IAT UA User :
 AADPRStagUAUser@adp    adpadp15
 
 KSatishStgAA@adp
@@ -1753,7 +1767,7 @@ connect to ggate identified by ggate using 'wfc10q';
 ggate/ggate@crtq01
 drop public database link DBLINKCRS01Q1TOREG21Q;
 create public database link DBLINKCRS01Q1TOREG21Q
-connect to ggate identified by ggate using 
+connect to ggate identified by ggate using
 '(DESCRIPTION = (ADDRESS_LIST = (LOAD_BALANCE = off) (FAILOVER = ON) (ADDRESS = (PROTOCOL = TCP)(HOST = cdldftgf3-scan.es.ad.adp.com)(PORT = 1521))) (CONNECT_DATA = (service_name = reg21q_svc1)))';
 select * from dual@DBLINKCRS01Q1TOREG21Q;
 DBLINKCRTS01TOCRS01S
@@ -5102,10 +5116,10 @@ select * from table(select SCH_NAMES from MV_REFRESH_JOB) order by 1;
 
 create table t1 tablespace data1 as
 select distinct c.client_code, c.CLIENT_ORGOID, bcp.BCP_EXTENSION_VALUE
-from batclientproduct bcp, catclient c 
-where 
+from batclientproduct bcp, catclient c
+where
 bcp.client_code = c.client_code
-and prd_code = 'BASE' and 
+and prd_code = 'BASE' and
 substr(BCP_EXTENSION_VALUE, 2) in (
 )
 order by 1;
@@ -5879,6 +5893,9 @@ crr01p ip: 172.24.224.20 (dc2prf002db01)
 crtp03 db box: 172.24.32.173 (dc2prcrptdb3)
 
 --------------------------------------------------
+connection string;
+jdbc:sqlserver://cdldvtitavap136.es.ad.adp.com\UKINSTANCE ADPGGR/V15ua1hr
+
 
 wf_LOAD_MOBILE_CLIENTS
 -----------------------
@@ -6962,7 +6979,7 @@ set lines 150
 col status form a10
 col username form a25
 col start_time form a15
-  SELECT a.inst_id, a.sid, a.serial#, a.username, b.xidusn, b.used_urec, 
+  SELECT a.inst_id, a.sid, a.serial#, a.username, b.xidusn, b.used_urec,
   b.used_ublk, b.status, b.start_time, a.seq#
   FROM gv$session a, gv$transaction b
   WHERE a.saddr = b.ses_addr
@@ -7078,7 +7095,7 @@ call pkg_catalog_generator_create.prc_create_env_param('HRII',
 call pkg_catalog_generator_create.prc_create_label_path('HRII',
                                                      '153',
                                                      null,
-                                                     '132,133');                                                   
+                                                     '132,133');
                                                       
 call pkg_catalog_generator_r132.prc_create_custom_english('HRII',
                                                    '153',
@@ -10020,6 +10037,14 @@ where vpd_key in ( select vpd_key from VPDCLSCH0075000046.security_user
 where upper(substr(user_id, instr(user_id, '@')+1)) = 'INNOVMKT') group by company_code order by 2;
 ============================================================
 
+select qry_mode, qry_ext_templateid
+from qryquery where qry_mode in ('SMP', 'STD') and qry_status = 90 and qry_active = 't' and client_code = 'ADPADMIN'
+and qry_ext_templateid  like 'OBA%';
+
+
+
+
+
 -- WFN external standard reports
 select s.*
      , cr.rtb_resource_group
@@ -10462,13 +10487,13 @@ col countreports form 999999
 col durationband form a15
 set lines 160
 break on tab_code skip 1
-with wfnReportsTimings as 
+with wfnReportsTimings as
 (
 select distinct b.req_key, b.qry_key, b.tab_code,
-    (select 
- trunc(abs( extract( second from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) 
-          + extract( minute from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 
-          + extract( hour from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60 
+    (select
+ trunc(abs( extract( second from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  )
+          + extract( minute from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60
+          + extract( hour from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60
           + extract( day from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60 * 24
             ))
      from batreqlog brl where b.req_key = brl.req_key) duration
@@ -10478,16 +10503,16 @@ from batreq b, qrytable qt
 where b.qry_key = qt.qry_key and b.req_status = 'OK'
 and qt.tab_code like '%@@WFN@@9'
 and b.req_timestamp > trunc(sysdate)-6) b
-) 
+)
 select tab_code, durationband, cnt, trunc(ratio_to_report(sum(cnt)) over (partition by tab_code) * 100) pct
 from (
 select tab_code, durationband, count(1) cnt from (
 select tab_code, (case when duration<120 then '0. < 2  min'
                       when duration<300 then  '1. 2-5  min'
                       when duration<1800 then '2. 5-30 min'
-                      else                    '3. >30  min' 
-                  end) durationband from wfnReportsTimings 
-) group by tab_code, durationband 
+                      else                    '3. >30  min'
+                  end) durationband from wfnReportsTimings
+) group by tab_code, durationband
 ) group by tab_code, durationband, cnt order by 1,2,3;
 
 
@@ -10837,8 +10862,8 @@ select sys_context('userenv', 'instance') from dual;
 
 alter system set "_sqlmon_max_planlines"=800 scope=both;
 
-/*+ LEADING(TABLE1) NO_MERGE(TABLE4) gather_plan_statistics */ /* fabiobressler hard parse #1 */ 
-/*+ gather_plan_statistics */ 
+/*+ LEADING(TABLE1) NO_MERGE(TABLE4) gather_plan_statistics */ /* fabiobressler hard parse #1 */
+/*+ gather_plan_statistics */
 
 select inst_id, sid, serial#,  sql_child_number, sql_id, prev_sql_id from gv$session
 where client_identifier='VIJAY_TEST' and status='ACTIVE';
@@ -10870,7 +10895,7 @@ fg8mqhd29z4q6
 -- Get plan for a sql_id:
 select * from table(dbms_xplan.display_cursor('fg8mqhd29z4q6',0,'ALLSTATS LAST')); --> fg8mqhd29z4q6_plan.txt / fg8mqhd29z4q6_plan_stats.txt
 
--- Get active workareas: 
+-- Get active workareas:
 col OPERATION_TYPE for a25
 select operation_id, operation_type, expected_size, work_area_size, number_passes, round(tempseg_size/1024/1024/1024,2) temp_size_gb from v$sql_workarea_active where sql_id='fg8mqhd29z4q6' order by 1;
 
@@ -12612,13 +12637,13 @@ col hr form 99999
 col "Duration Band" form a20
 set lines 160
 break on tab_code skip 1
-with wfnReportsTimings as 
+with wfnReportsTimings as
 (
 select distinct b.req_key, b.qry_key, --, b.tab_code,
-    (select 
- trunc(abs( extract( second from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) 
-          + extract( minute from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 
-          + extract( hour from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60 
+    (select
+ trunc(abs( extract( second from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  )
+          + extract( minute from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60
+          + extract( hour from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60
           + extract( day from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60 * 24
             ))
      from batreqlog brl where b.req_key = brl.req_key) duration
@@ -12628,7 +12653,7 @@ from batreq b, qrytable qt
 where b.qry_key = qt.qry_key --and b.req_status = 'OK'
 and qt.tab_code like '%@@OBA@@8'
 and b.req_timestamp > trunc(sysdate)-100) b
-) 
+)
 select durationband "Duration Band", cnt "# Reports", trunc(ratio_to_report(sum(cnt)) over () * 100) || '%' "% of Reports"
 from (
 select durationband, count(1) cnt from (
@@ -12637,9 +12662,9 @@ select req_key, (case when duration<120 then '0. < 2  min'
                       when duration<1800 then '2.  5-30 min'
                       when duration<3600 then '3. 30-60 min'
                       when duration<7200 then '4.  1-2 hour'
-                      when duration<14400 then '5.  2-4 hour'  
-                      else                    '6.  > 4 hour' 
-                  end) durationband from wfnReportsTimings 
+                      when duration<14400 then '5.  2-4 hour'
+                      else                    '6.  > 4 hour'
+                  end) durationband from wfnReportsTimings
 ) group by durationband
     ) group by durationband, cnt order by 1;
     
@@ -12650,13 +12675,13 @@ col "# Reports" form 999999
 col hr form 99999
 col "Duration Band" form a20
 set lines 120
-with wfnReportsTimings as 
+with wfnReportsTimings as
 (
 select distinct b.req_key, b.qry_key, hr, --, b.tab_code,
-    (select 
- trunc(abs( extract( second from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) 
-          + extract( minute from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 
-          + extract( hour from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60 
+    (select
+ trunc(abs( extract( second from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  )
+          + extract( minute from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60
+          + extract( hour from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60
           + extract( day from (max(brl.rlog_timestamp)-min(brl.rlog_timestamp))  ) * 60 * 60 * 24
             ))
      from batreqlog brl where b.req_key = brl.req_key) duration
@@ -12666,7 +12691,7 @@ from batreq b, qrytable qt
 where b.qry_key = qt.qry_key --and b.req_status = 'OK'
 and qt.tab_code like '%@@OBA@@8'
 and b.req_timestamp > trunc(sysdate)-100) b
-) 
+)
 select durationband "Duration Band", hr,  cnt "# Reports", trunc(ratio_to_report(sum(cnt)) over () * 100, 2) || '%' "% of Reports"
 from (
 select durationband, hr, count(1) cnt from (
@@ -12675,9 +12700,9 @@ select req_key, hr, (case when duration<120 then '0. < 2  min'
                       when duration<1800 then '2.  5-30 min'
                       when duration<3600 then '3. 30-60 min'
                       when duration<7200 then '4.  1-2 hour'
-                      when duration<14400 then '5.  2-4 hour'  
-                      else                    '6.  > 4 hour'   
-                  end) durationband from wfnReportsTimings 
+                      when duration<14400 then '5.  2-4 hour'
+                      else                    '6.  > 4 hour'
+                  end) durationband from wfnReportsTimings
 ) group by durationband, hr
     ) group by durationband, hr, cnt order by 1,2;
     
@@ -12710,27 +12735,27 @@ practitioner@wfn11xbdsr
 
 WFN Referenced Objects
 
- WITH refitems1 AS (SELECT /*+ materialize */ DISTINCT REFERENCED_NAME FROM user_dependencies 
+ WITH refitems1 AS (SELECT /*+ materialize */ DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE name LIKE 'WF11%0007' AND REFERENCED_OWNER = 'ADPR_CRUVPD'
   AND REFERENCED_TYPE!='SYNONYM')
- ,refitems2 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies 
+ ,refitems2 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND name IN (SELECT * FROM refitems1)
   AND REFERENCED_TYPE!='SYNONYM'
  )
- ,refitems3 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies 
+ ,refitems3 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND name IN (SELECT * FROM refitems2)
   AND REFERENCED_TYPE!='SYNONYM'
  )
  ,all_ref_syns AS (
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND REFERENCED_TYPE = 'SYNONYM'
   AND name IN (SELECT * FROM refitems2)
  UNION
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND REFERENCED_TYPE = 'SYNONYM'
-  AND name IN (SELECT * FROM refitems1) 
+  AND name IN (SELECT * FROM refitems1)
  UNION
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE name LIKE 'WF11%0007' AND REFERENCED_OWNER = 'ADPR_CRUVPD'
   AND REFERENCED_TYPE='SYNONYM'
 )
@@ -12738,7 +12763,7 @@ WFN Referenced Objects
  WHERE us.synonym_name IN (SELECT * FROM all_ref_syns)
  AND us.table_name = ao.object_name AND ao.owner = us.table_owner
  AND object_type = 'VIEW')
-SELECT DISTINCT REFERENCED_OWNER, referenced_name, REFERENCED_TYPE FROM all_dependencies WHERE owner = 'WFN9SCH000053' 
+SELECT DISTINCT REFERENCED_OWNER, referenced_name, REFERENCED_TYPE FROM all_dependencies WHERE owner = 'WFN9SCH000053'
 AND name IN (SELECT table_name FROM wfnobjrefs) AND REFERENCED_OWNER NOT IN ('SYS')
 AND REFERENCED_TYPE != 'TABLE'
 
@@ -12748,47 +12773,47 @@ AND REFERENCED_TYPE != 'TABLE'
 
 
 
- WITH refitems1 AS (SELECT /*+ materialize */ DISTINCT REFERENCED_NAME FROM user_dependencies 
+ WITH refitems1 AS (SELECT /*+ materialize */ DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE name LIKE 'WF11%0007' AND REFERENCED_OWNER = 'ADPR_CRUVPD'
   AND REFERENCED_TYPE!='SYNONYM')
- ,refitems2 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies 
+ ,refitems2 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND name IN (SELECT * FROM refitems1)
   AND REFERENCED_TYPE!='SYNONYM'
  )
- ,refitems3 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies 
+ ,refitems3 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND name IN (SELECT * FROM refitems2)
   AND REFERENCED_TYPE!='SYNONYM'
  )
  ,all_ref_syns AS (
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND REFERENCED_TYPE = 'SYNONYM'
   AND name IN (SELECT * FROM refitems2)
  UNION
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND REFERENCED_TYPE = 'SYNONYM'
-  AND name IN (SELECT * FROM refitems1) 
+  AND name IN (SELECT * FROM refitems1)
  UNION
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE name LIKE 'WF11%0007' AND REFERENCED_OWNER = 'ADPR_CRUVPD'
   AND REFERENCED_TYPE='SYNONYM'
 )
- ,wfnobjrefs1 AS (SELECT /*+ materialize */ 
+ ,wfnobjrefs1 AS (SELECT /*+ materialize */
   DISTINCT us.synonym_name, us.table_name, ao.object_type FROM user_synonyms us, all_objects ao
  WHERE us.synonym_name IN (SELECT * FROM all_ref_syns)
  AND us.table_name = ao.object_name AND ao.owner = us.table_owner
  )
  ,wfnobjrefs2 AS (SELECT /*+ materialize */  DISTINCT   REFERENCED_OWNER, referenced_name, REFERENCED_TYPE
-  FROM all_dependencies WHERE owner = 'WFN9SCH000053'  
+  FROM all_dependencies WHERE owner = 'WFN9SCH000053'
   AND name IN (SELECT table_name FROM wfnobjrefs1 WHERE object_type = 'VIEW') AND REFERENCED_OWNER NOT IN ('SYS')
  )
  ,wfnobjrefs3 AS (SELECT /*+ materialize */  DISTINCT   REFERENCED_OWNER, referenced_name, REFERENCED_TYPE
-  FROM all_dependencies WHERE owner = 'WFN9SCH000053'  
-  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs2 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC') 
+  FROM all_dependencies WHERE owner = 'WFN9SCH000053'
+  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs2 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC')
   AND REFERENCED_OWNER NOT IN ('SYS')
  )
  ,wfnobjrefs4 AS (SELECT /*+ materialize */  DISTINCT   REFERENCED_OWNER, referenced_name, REFERENCED_TYPE
-  FROM all_dependencies WHERE owner = 'WFN9SCH000053'  
-  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs3 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC') 
+  FROM all_dependencies WHERE owner = 'WFN9SCH000053'
+  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs3 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC')
   AND REFERENCED_OWNER NOT IN ('SYS')
  )
  SELECT '4' depth, REFERENCED_NAME, REFERENCED_TYPE FROM wfnobjrefs4 WHERE REFERENCED_TYPE LIKE 'TABLE%' and REFERENCED_TYPE not likE '%PARTITION%'
@@ -12802,47 +12827,47 @@ AND REFERENCED_TYPE != 'TABLE'
  
 to get list of dependent objects for wfn-adpr:
 
- WITH refitems1 AS (SELECT /*+ materialize */ DISTINCT REFERENCED_NAME FROM user_dependencies 
+ WITH refitems1 AS (SELECT /*+ materialize */ DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE name LIKE 'WF11%0007' AND REFERENCED_OWNER = 'ADPR_CRUVPD'
   AND REFERENCED_TYPE!='SYNONYM')
- ,refitems2 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies 
+ ,refitems2 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND name IN (SELECT * FROM refitems1)
   AND REFERENCED_TYPE!='SYNONYM'
  )
- ,refitems3 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies 
+ ,refitems3 AS (SELECT /*+ materialize */  DISTINCT  REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND name IN (SELECT * FROM refitems2)
   AND REFERENCED_TYPE!='SYNONYM'
  )
  ,all_ref_syns AS (
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND REFERENCED_TYPE = 'SYNONYM'
   AND name IN (SELECT * FROM refitems2)
  UNION
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE  REFERENCED_OWNER = 'ADPR_CRUVPD' AND REFERENCED_TYPE = 'SYNONYM'
-  AND name IN (SELECT * FROM refitems1) 
+  AND name IN (SELECT * FROM refitems1)
  UNION
- SELECT DISTINCT REFERENCED_NAME FROM user_dependencies 
+ SELECT DISTINCT REFERENCED_NAME FROM user_dependencies
   WHERE name LIKE 'WF11%0007' AND REFERENCED_OWNER = 'ADPR_CRUVPD'
   AND REFERENCED_TYPE='SYNONYM'
 )
- ,wfnobjrefs1 AS (SELECT /*+ materialize */ 
+ ,wfnobjrefs1 AS (SELECT /*+ materialize */
   DISTINCT us.synonym_name, us.table_name, ao.object_type FROM user_synonyms us, all_objects ao
  WHERE us.synonym_name IN (SELECT * FROM all_ref_syns)
  AND us.table_name = ao.object_name AND ao.owner = us.table_owner
  )
  ,wfnobjrefs2 AS (SELECT /*+ materialize */  DISTINCT   REFERENCED_OWNER, referenced_name, REFERENCED_TYPE
-  FROM all_dependencies WHERE owner = 'WFN9SCH000053'  
+  FROM all_dependencies WHERE owner = 'WFN9SCH000053'
   AND name IN (SELECT table_name FROM wfnobjrefs1 WHERE object_type = 'VIEW') AND REFERENCED_OWNER NOT IN ('SYS')
  )
  ,wfnobjrefs3 AS (SELECT /*+ materialize */  DISTINCT   REFERENCED_OWNER, referenced_name, REFERENCED_TYPE
-  FROM all_dependencies WHERE owner = 'WFN9SCH000053'  
-  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs2 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC') 
+  FROM all_dependencies WHERE owner = 'WFN9SCH000053'
+  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs2 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC')
   AND REFERENCED_OWNER NOT IN ('SYS')
  )
  ,wfnobjrefs4 AS (SELECT /*+ materialize */  DISTINCT   REFERENCED_OWNER, referenced_name, REFERENCED_TYPE
-  FROM all_dependencies WHERE owner = 'WFN9SCH000053'  
-  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs3 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC') 
+  FROM all_dependencies WHERE owner = 'WFN9SCH000053'
+  AND name IN (SELECT REFERENCED_NAME FROM wfnobjrefs3 WHERE REFERENCED_TYPE!='TABLE' AND REFERENCED_OWNER != 'PUBLIC')
   AND REFERENCED_OWNER NOT IN ('SYS')
  )
 /* SELECT  depth, REFERENCED_NAME, REFERENCED_TYPE FROM wfnobjrefs4 WHERE REFERENCED_TYPE  LIKE 'VIEW%' and REFERENCED_TYPE not likE '%PARTITION%'
@@ -12886,7 +12911,7 @@ col tab1 format a30
 col tab2 form a30
 col cnt form 999999999
 with x as (
-select /*+ materialize */ distinct q.qry_key, c.tab_table 
+select /*+ materialize */ distinct q.qry_key, c.tab_table
 from qrytable qt join cattable c on (qt.tab_code = c.tab_code)
 join qryquery q on (qt.qry_key = q.qry_key)
 where q.qry_datetime > trunc(sysdate)-3
@@ -12905,7 +12930,7 @@ group by y1.tab_table, y2.tab_table --, y3.tab_table
 --order by 3 desc, 1,2
 ) where rownum < 1000)
 select * from (
-select tab1, tab2, cnt, 
+select tab1, tab2, cnt,
   rank() over (partition by k order by tab1) rnk
 from z )
 where rnk =1
@@ -12914,7 +12939,7 @@ order by 3 desc, 1,2;
 
 
 
-cri03q 
+cri03q
 adpidmcore01
 
 Here is one DB that has star schema.
