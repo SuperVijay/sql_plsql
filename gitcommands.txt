@@ -1,0 +1,84 @@
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+
+
+git checkout -b iss53
+
+  short hand for 
+  git branch iss53
+  git checkout iss53
+
+git commit -a -m 'issue 53 changes'
+
+  now you have production issue and hot fix it
+  git wont let you switch branches. its best to have a clean working state before you switch branches.
+  commit all changes before switching to master branch.
+
+git checkout master
+  when you switch branches git resets your working dir to look like it did the last time you committed.
+  create a hotfix branch.
+
+git checkout -b productionhotfix
+<make your changes>
+git commit -a -m 'fixes for prod hot fix'
+
+<test your changes and ready to merge it to production>
+git checkout master
+git merge producitonhotfix
+  <you see message fast forward when there is no divergent work to merge. it just moves the pointer fast forward>
+
+   after it is merged with the master branch, there is no need to keep the hotfix branch. So, it can be deleted.
+
+git branch -d productionhotfix
+
+  Now switch back to the issue 53.
+git checkout iss53
+   <note that you dont need to do -b here because the branch already exists>
+
+   <after finishing your cahnges you checkin>
+
+git commit -a -m 'issue 53 last changes'
+  <note that the changes you made for the produciton hotfix are not yet available in issue53 branch>
+  now we are going to merge issu53 branch into master.
+
+git checkout master
+git merge iss53
+  Git creates a new snapshot and creates a new commit, called: merge commit. 
+
+  if there is a merge conflict, the processs halts with CONFLICT message.
+  you can check the files causing the conflict with command
+
+git status
+
+<you manually fix the conflicts and need to tell git that they are resolve>
+<you can fire up mergetool to open GUI editor to resolve conflicts>
+
+git mergetool
+git add yourmodifiedfile
+
+
+git status
+git commit
+
+
+  after this work you can delete the issu53 branch.
+git branch -d iss53
+
+---------------------------------
+
+
+  to list all branches:
+
+git branch 
+
+   the one with * is the current branch
+
+   to see all the branches that were not merged use --no-merged option
+   --merged will show the branches that are already merged with the branch you are currently on.
+git branch --no-merged
+
+git branch --merged
+   
+    those without * in this list can be deleted.
+
+
+ 	
