@@ -4,6 +4,15 @@ and q.qry_mode IN ('SMP','STD') and q.user_key in (select user_key from secuser 
 and q.qry_status = 90 and q.qry_active = 't' and q.qry_ext_templateid like 'IHCM16%';
 
 
+select b.req_key, b.client_code
+from batreq b join qrytable q on (b.qry_key = q.qry_key)
+and b.req_timestamp > sysdate - interval '1' hour
+and q.tab_code like 'EMP_TD_OVRD@@HRII@@153';
+
+select
+inst_key, count(1) from batclientenvironment be
+where be.prd_code = 'HRB' and be.BCE_DBLINK_VALUE is null
+group by inst_key;
 
 
 variable v number;

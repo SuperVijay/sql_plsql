@@ -763,6 +763,14 @@ sqlplus dbadm/ct4u1u08@HRA01S
 sqlplus dbadm/ct4u1u08@PF001S
 
 
+DB: PF205Q
+Schema: PF205Q1
+Client OID: G3WYWP8DRSMTVT00
+URL: https://commonag-portal-fit.nj.adp.com/public/index.htm
+Login: CDerosa@PF205Q1/ payforce11
+
+
+
 select regexp_replace(username, 'CR$', '') from all_users where username like '%CR' order by 1;
 
 sqlplus dbadm/Van01UaT@van01u
@@ -12993,4 +13001,14 @@ select * from (
 (select rank() over (partition by a.key) order by decode(a.key, 't', 1, 2), a.m desc) rnk,
 a.* from mytable a where a.userid = 'myuserid'
 ) where rnk =1
+
+
+
+
+
+Copy reports has no permission:
+===============================
+User has the run profile (CRTClientRunReport) so he will not be able to copy the reports. He needs to remove this profile from Netsecure.
+
+
 
